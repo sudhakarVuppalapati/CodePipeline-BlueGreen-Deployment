@@ -1,0 +1,26 @@
+{
+	"executionRoleArn": "arn:aws:iam::accountid:role/ecsTaskExecutionRole",
+	"containerDefinitions": [{
+		"logConfiguration": {
+			"logDriver": "awslogs",
+			"options": {
+				"awslogs-group": "EcsLogGroup",
+				"awslogs-region": "us-east-2",
+				"awslogs-stream-prefix": "SpringAppContainer"
+			}
+		},
+		"portMappings": [{
+			"hostPort": 8080,
+			"protocol": "tcp",
+			"containerPort": 8080
+		}],
+		"image": "<IMAGE1_NAME>",
+		"name": "SpringAppContainer"
+	}],
+	"memory": "1024",
+	"compatibilities": ["FARGATE"],
+	"family": "EcsTaskDefinition",
+	"requiresCompatibilities": ["FARGATE"],
+	"networkMode": "awsvpc",
+	"cpu": "512"
+}
