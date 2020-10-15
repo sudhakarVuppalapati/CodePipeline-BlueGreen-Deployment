@@ -235,7 +235,7 @@ Resources:
     Type: AWS::ECS::TaskDefinition
     Properties:
       ContainerDefinitions:
-        - Image: "969829910614.dkr.ecr.us-east-2.amazonaws.com/ecs-taskonly-repo:build-57c574db-f702-457f-b7c2-d416f210d204"
+        - Image: "AccountID.dkr.ecr.us-east-2.amazonaws.com/ecs-taskonly-repo:build-57c574db-f702-457f-b7c2-d416f210d204"
           Name: SpringAppContainer
           PortMappings:
             - ContainerPort: 8080
@@ -247,7 +247,7 @@ Resources:
               awslogs-region: !Ref AWS::Region
               awslogs-stream-prefix: 'SpringAppContainer'
       Cpu: "256"
-      ExecutionRoleArn: arn:aws:iam::969829910614:role/ecsTaskExecutionRole
+      ExecutionRoleArn: arn:aws:iam::AccountID:role/ecsTaskExecutionRole
       Family: EcsTaskDefinition
       Memory: "512"
       NetworkMode: awsvpc
@@ -312,7 +312,7 @@ Resources:
             applicationName='${ApplicationName}',
             deploymentGroupName='${DeploymentGroupName}',
             deploymentConfigName='CodeDeployDefault.ECSAllAtOnce',
-            serviceRoleArn='arn:aws:iam::969829910614:role/CodeDeployRoleForECS',
+            serviceRoleArn='arn:aws:iam::AccountID:role/CodeDeployRoleForECS',
             deploymentStyle={
               'deploymentType': 'BLUE_GREEN',
               'deploymentOption': 'WITH_TRAFFIC_CONTROL'
@@ -353,7 +353,7 @@ Resources:
       FunctionName: create-deployment-group
       Handler: index.lambda_handler
       MemorySize: 128
-      Role: arn:aws:iam::969829910614:role/LambdaAdminAccess
+      Role: arn:aws:iam::AccountID:role/LambdaAdminAccess
       Runtime: python3.7
       Timeout: 60
 
@@ -384,7 +384,7 @@ Resources:
 
       Description: This Lambda function calls create-deployment-group to create Deployment Group for AWS CodeDeploy from the CloudFormation template
       Handler: index.handler
-      Role: arn:aws:iam::969829910614:role/LambdaAdminAccess
+      Role: arn:aws:iam::AccountID:role/LambdaAdminAccess
       Runtime: python3.7
       Timeout: 60
 
